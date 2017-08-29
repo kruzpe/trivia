@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     var questionsAsked = 0
     var correctQuestions = 0
     var indexOfSelectedQuestion: Int = 0
-    let open: Int = 0
     
     var gameSound: SystemSoundID = 0
     
