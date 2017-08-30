@@ -47,7 +47,7 @@ struct questionProvider {
         
         
         ["Question": "Which movie is one of three in Oscar history to won the Big Five: Best Picture, Best Actor, Best Actress, Best Director, and Best Screenplay?",
-         "Options": ["Ben-Hur (1959)","One Flew Over the Cuckoo's Nest (1975)","* On Golden Pond (1981)","Titanic (1997)"],
+         "Options": ["Ben-Hur (1959)","One Flew Over the Cuckoo's Nest (1975)","On Golden Pond (1981)","Titanic (1997)"],
          "Corret Answer": "One Flew Over the Cuckoo's Nest (1975)"],
         
         

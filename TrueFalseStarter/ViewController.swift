@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var questionsAsked = 0
     var correctQuestions = 0
     var indexOfSelectedQuestion: Int = 0
+    var questionDictionary = [String: Any]()
     
     var gameSound: SystemSoundID = 0
     
@@ -31,6 +32,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
+    
+    @IBOutlet weak var optionOne: UIButton!
+    @IBOutlet weak var optionTwo: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
     @IBOutlet weak var optionThree: UIButton!
     @IBOutlet weak var optionFour: UIButton!
@@ -51,8 +55,15 @@ class ViewController: UIViewController {
     
     func displayQuestion() {
         indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: trivia.count)
-        let questionDictionary = question.randomQuestion()
-        questionField.text = questionDictionary["Question"] as! String
+        // ****************************
+        questionDictionary = question.randomQuestion()
+        questionField.text = questionDictionary["Question"] as? String
+        let options = questionDictionary["Options"] as! [String]
+        
+        optionOne.setTitle(options[0], for: UIControlState.normal)
+        optionTwo.setTitle(options[1], for: UIControlState.normal)
+        optionThree.setTitle(options[2], for: UIControlState.normal)
+        optionFour.setTitle(options[3], for: UIControlState.normal)
         playAgainButton.isHidden = true
     }
     
@@ -72,10 +83,13 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        let selectedQuestionDict = trivia[indexOfSelectedQuestion]
-        let correctAnswer = selectedQuestionDict["Answer"]
         
-        if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
+        let correctAnswer = questionDictionary["Corret Answer"] as? String
+        //**********
+        
+        
+        //******
+        if (sender === optionOne &&  correctAnswer == optionOne.currentTitle) || (sender === optionTwo && correctAnswer == optionTwo.currentTitle) || (sender === optionThree && correctAnswer == optionThree.currentTitle) || (sender === optionFour && correctAnswer == optionFour.currentTitle) {
             correctQuestions += 1
             questionField.text = "Correct!"
         } else {
