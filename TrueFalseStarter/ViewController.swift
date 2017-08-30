@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     
     var gameSound: SystemSoundID = 0
     
+    let question = questionProvider()
+    
     let trivia: [[String : String]] = [
         ["Question": "Only female koalas can whistle", "Answer": "False"],
         ["Question": "Blue whales are technically whales", "Answer": "True"],
@@ -30,6 +32,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
+    @IBOutlet weak var optionThree: UIButton!
+    @IBOutlet weak var optionFour: UIButton!
     
 
     override func viewDidLoad() {
@@ -47,8 +51,8 @@ class ViewController: UIViewController {
     
     func displayQuestion() {
         indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: trivia.count)
-        let questionDictionary = trivia[indexOfSelectedQuestion]
-        questionField.text = questionDictionary["Question"]
+        let questionDictionary = question.randomQuestion()
+        questionField.text = questionDictionary["Question"] as! String
         playAgainButton.isHidden = true
     }
     
